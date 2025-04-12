@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>投資組合設計規劃（2025-2030年）</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        canvas {
+            margin: 20px 0;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <h1>投資組合設計規劃（2025-2030年）</h1>
+    <p>以下是為客戶設計的投資組合，旨在對沖台幣貶值風險（預期1:35-1:40），同時提供穩定的保障功能。</p>
+
+    <h2>1. 投資組合目標</h2>
+    <ul>
+        <li><strong>主要目標</strong>：對沖台幣貶值風險，保護資產價值。</li>
+        <li><strong>次要目標</strong>：提供穩定的保險保障，並在可控風險下追求一定收益。</li>
+    </ul>
+
+    <h2>2. 投資組合配置</h2>
+    <table>
+        <tr>
+            <th>產品類型</th>
+            <th>分配比例</th>
+            <th>說明</th>
+        </tr>
+        <tr>
+            <td>外幣保單（如壽險）</td>
+            <td>70%</td>
+            <td>提供穩定的對沖效果及保險保障，適合長期規劃。</td>
+        </tr>
+        <tr>
+            <td>投資型保單（外幣穩健型）</td>
+            <td>20%</td>
+            <td>獲得一定投資收益，同時對沖匯率風險，需注意市場風險。</td>
+        </tr>
+        <tr>
+            <td>黃金或外幣存款</td>
+            <td>10%</td>
+            <td>作為額外的避險工具，降低整體波動。</td>
+        </tr>
+    </table>
+
+    <h2>3. 圖表說明</h2>
+
+    <h3>圖表1：投資組合配置（圓餅圖）</h3>
+    <p><strong>說明</strong>：此圓餅圖展示投資組合中各產品的分配比例，凸顯外幣保單作為主要對沖工具的重要性。</p>
+    <canvas id="portfolioPieChart" width="400" height="400"></canvas>
+    <script>
+        const pieCtx = document.getElementById('portfolioPieChart').getContext('2d');
+        const pieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['外幣保單', '投資型保單', '黃金或外幣存款'],
+                datasets: [{
+                    data: [70, 20, 10],
+                    backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: '投資組合配置' }
+                }
+            }
+        });
+    </script>
+
+    <h3>圖表2：外幣保單價值隨匯率變動（柱狀圖）</h3>
+    <p><strong>說明</strong>：此柱狀圖展示在不同匯率下，外幣保單的台幣價值變化，強調其對沖效果。</p>
+    <canvas id="policyValueBarChart" width="600" height="300"></canvas>
+    <script>
+        const barCtx = document.getElementById('policyValueBarChart').getContext('2d');
+        const barChart = new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['1:32', '1:35', '1:40'],
+                datasets: [{
+                    label: '保單價值 (萬台幣)',
+                    data: [320, 350, 400],
+                    backgroundColor: ['#4BC0C0', '#FF9F40', '#FF6384'],
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: '保單價值 (萬台幣)' } },
+                    x: { title: { display: true, text: '匯率 (台幣:美元)' } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: '外幣保單價值隨匯率變動' }
+                }
+            }
+        });
+    </script>
+
+    <h3>圖表3：投資型保單預期收益（折線圖）</h3>
+    <p><strong>說明</strong>：此折線圖展示投資型保單在不同年份的預期收益走勢，幫助客戶理解潛在回報。</p>
+    <canvas id="ilpLineChart" width="600" height="300"></canvas>
+    <script>
+        const lineCtx = document.getElementById('ilpLineChart').getContext('2d');
+        const lineChart = new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: ['2025', '2026', '2027', '2028', '2029', '2030'],
+                datasets: [{
+                    label: '投資型保單價值 (萬台幣)',
+                    data: [100, 103, 106, 109, 112, 115],
+                    borderColor: '#36A2EB',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: false, title: { display: true, text: '價值 (萬台幣)' } },
+                    x: { title: { display: true, text: '年份' } }
+                },
+                plugins: {
+                    legend: { display: true },
+                    title: { display: true, text: '投資型保單預期收益 (假設年化3%)' }
+                }
+            }
+        });
+    </script>
+
+    <h3>圖表4：風險與回報比較（表格）</h3>
+    <p><strong>說明</strong>：此表格比較各產品的風險等級、預期回報及流動性，幫助客戶全面評估。</p>
+    <table>
+        <tr>
+            <th>產品類型</th>
+            <th>風險等級</th>
+            <th>預期回報</th>
+            <th>流動性</th>
+        </tr>
+        <tr>
+            <td>外幣保單</td>
+            <td>低</td>
+            <td>穩定</td>
+            <td>低</td>
+        </tr>
+        <tr>
+            <td>投資型保單</td>
+            <td>中</td>
+            <td>中等</td>
+            <td>中</td>
+        </tr>
+        <tr>
+            <td>黃金或外幣存款</td>
+            <td>低</td>
+            <td>低</td>
+            <td>高</td>
+        </tr>
+    </table>
+
+    <h2>4. 專業建議</h2>
+    <ul>
+        <li><strong>外幣保單</strong>：作為核心配置，提供穩定的對沖效果和保險保障，適合長期持有。</li>
+        <li><strong>投資型保單</strong>：選擇穩健型外幣資產，追求一定收益，同時對沖匯率風險。</li>
+        <li><strong>黃金或外幣存款</strong>：作為補充，增加流動性並降低整體波動。</li>
+    </ul>
+
+    <h2>5. 注意事項</h2>
+    <ul>
+        <li>外幣保單需以外幣支付保費，需確認客戶有能力負擔。</li>
+        <li>投資型保單涉及市場風險，需定期檢視資產配置。</li>
+        <li>黃金價格波動較大，不宜過度配置。</li>
+    </ul>
+</body>
+</html>
